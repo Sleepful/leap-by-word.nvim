@@ -23,11 +23,11 @@ So the steps are:
 
 <img width="483" alt="Screenshot 2023-10-23 at 00 29 28" src="https://github.com/Sleepful/leap-by-word.nvim/assets/7144046/c7cec654-916e-4c00-88b0-1d2922bfe70c">
 
-#### Searching for words with `j`
+#### Searching for words that start with `j`
 
 <img width="483" alt="Screenshot 2023-10-23 at 00 29 35" src="https://github.com/Sleepful/leap-by-word.nvim/assets/7144046/628985ff-25c2-451f-9aff-e9b6d20e6d68">
 
-#### Selecting `j` and then searching for words with `q`
+#### Leap to `j` and then searching for words that start with `q`
 
 <img width="483" alt="Screenshot 2023-10-23 at 00 29 53" src="https://github.com/Sleepful/leap-by-word.nvim/assets/7144046/670fcb72-6fc2-4a54-ac64-3ce4951b7e82">
 
