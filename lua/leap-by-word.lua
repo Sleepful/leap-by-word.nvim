@@ -99,6 +99,7 @@ local function get_targets(winid, char, direction)
 end
 
 return function(opts)
+  local opts = opts or {}
   local direction = opts.direction or "both"
   print("Search word with letter:")
   local char = get_input()
