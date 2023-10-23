@@ -2,15 +2,15 @@
 
 Use with [leap.nvim](https://github.com/ggandor/leap.nvim) and leap better, faster, stronger.
 
-This allows you to leap by using only 1 letter as your query.
-It will highlight the first letter of all words that match your query.
+This allows you to leap by using only *1 letter* as your query.
+It will highlight the *first letter* of all words that match your query.
 
 So the steps are:
 
-1. Mentally choose a word that you want to leap to.
-2. Use your keybind to activate leap-by-word.
-3. Input the first letter of the word that you picked, this will give it a label on your screen.
-4. Input the label that that showed on your word, this will let you leap to it.
+1. **Mentally** choose a word that you want to leap to.
+2. Use your keybind to activate `leap-by-word`.
+3. Input the **first letter** of the word that you picked, this will give it a label on your screen.
+4. Input the **letter of label** that that showed on your word, this will let you **leap** to it.
 
 ## Requirements
 
