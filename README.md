@@ -1,6 +1,6 @@
 # leap-by-word.nvim
 
-Use with leap.nvim and leap better, faster, stronger.
+Use with [leap.nvim](https://github.com/ggandor/leap.nvim) and leap better, faster, stronger.
 
 This allows you to leap by using only 1 letter as your query.
 It will highlight the first letter of all words that match your query.
