@@ -98,7 +98,7 @@ local function get_targets(winid, char, direction)
   end
 end
 
-local function leap(opts)
+local function leap(opts, leap_override_opts)
   local opts = opts or {}
   local direction = opts.direction or "both"
   print("Search word with letter:")
@@ -111,13 +111,22 @@ local function leap(opts)
   local targets = get_targets(winid, char, direction)
   if targets ~= nil then
     print("Match found")
-    require("leap").leap({
+    require("leap").leap(vim.tbl_extend("force", {
       target_windows = { winid },
       targets = targets,
-    })
+    }, leap_override_opts or {}))
   else
     print("No matches")
   end
 end
 
-return { leap = leap }
+local function leap_spooky(opts, spooky_override_opts)
+  local action = require("leap-spooky").spooky_action(
+    function () return "viw" end,
+    { keeppos = true, on_return = (vim.v.operator == 'y') and 'p', }
+  )
+  local leap_override_opts = { action = action }
+  leap({}, leap_override_opts)
+end
+
+return { leap = leap, EXPERIMENTAL_spooky_leap = leap_spooky }
