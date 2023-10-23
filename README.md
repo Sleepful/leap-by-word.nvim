@@ -27,9 +27,9 @@ So the steps are:
 
 <img width="483" alt="Screenshot 2023-10-23 at 00 29 35" src="https://github.com/Sleepful/leap-by-word.nvim/assets/7144046/628985ff-25c2-451f-9aff-e9b6d20e6d68">
 
-#### Leap to `j` and then searching for words that start with `q`
+#### Leap to `j` and then searching for words that start with `o`
 
-<img width="483" alt="Screenshot 2023-10-23 at 00 29 53" src="https://github.com/Sleepful/leap-by-word.nvim/assets/7144046/670fcb72-6fc2-4a54-ac64-3ce4951b7e82">
+<img width="483" alt="Screenshot 2023-10-23 at 00 38 55" src="https://github.com/Sleepful/leap-by-word.nvim/assets/7144046/a11f985e-54cf-4ddd-9ed8-a0ee99b2a620">
 
 </details>
 
