@@ -27,14 +27,14 @@ Just pick your mapping:
 
 ```lua
 -- example to map it to `s` key:
-vim.keymap.set({'n', 'x', 'o'}, 's', function() require('leap-by-word')() end, {})
+vim.keymap.set({'n', 'x', 'o'}, 's', function() require('leap-by-word').leap() end, {})
 ```
 
 You can also pass a direction if you want:
 ```lua
 -- can use "upwards" or "downwards" for direction, this means it will search only
 -- in that direction from your cursor position. By default it uses "both" directions.
-function() require('leap-by-word')({direction = "upwards"})
+function() require('leap-by-word').leap({direction = "upwards"})
 ```
 
 ## Future road map

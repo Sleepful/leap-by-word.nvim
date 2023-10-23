@@ -98,7 +98,7 @@ local function get_targets(winid, char, direction)
   end
 end
 
-return function(opts)
+local function leap(opts)
   local opts = opts or {}
   local direction = opts.direction or "both"
   print("Search word with letter:")
@@ -119,3 +119,5 @@ return function(opts)
     print("No matches")
   end
 end
+
+return { leap = leap }
