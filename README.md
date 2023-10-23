@@ -10,7 +10,7 @@ So the steps are:
 1. **Mentally** choose a word that you want to leap to.
 2. Use your keybind to activate `leap-by-word`.
 3. Input the **first letter** of the word that you picked, this will give it a label on your screen.
-4. Input the **letter of label** that that showed on your word, this will let you **leap** to it.
+4. Input the **letter of the label** that showed on your word, this will let you **leap** to it.
 
 ## Requirements
 
