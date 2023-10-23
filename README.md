@@ -56,7 +56,7 @@ You can also pass a direction if you want:
 ```lua
 -- can use "upwards" or "downwards" for direction, this means it will search only
 -- in that direction from your cursor position. By default it uses "both" directions.
-function() require('leap-by-word').leap({direction = "upwards"})
+require('leap-by-word').leap({direction = "upwards"})
 ```
 
 ## Future road map
