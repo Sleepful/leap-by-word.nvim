@@ -4,6 +4,7 @@ Use with [leap.nvim](https://github.com/ggandor/leap.nvim) and leap better, fast
 
 This allows you to leap by using only *1 letter* as your query.
 It will highlight the *first letter* of all words that match your query.
+The goal is to make `leap` easy peasy lemon squeezy, just look at the first letter, forget about looking at the second one.
 
 So the steps are:
 
