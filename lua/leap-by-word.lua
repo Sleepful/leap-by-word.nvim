@@ -122,7 +122,7 @@ end
 
 local function leap_spooky(opts, spooky_override_opts)
   local action = require("leap-spooky").spooky_action(
-    function () return "viw" end,
+    function () return "vE" end,
     { keeppos = true, on_return = (vim.v.operator == 'y') and 'p', }
   )
   local leap_override_opts = { action = action }
