@@ -21,6 +21,7 @@ local matches = {
   lower = [=[\v[[:lower:]]\C]=],
   digit = [=[\v[[:digit:]]\C]=],
   word  = [=[\v[[:upper:][:lower:][:digit:]]\C]=],
+  keyw  = [=[\v[[:keyword:]]\C]=],
 }
 local function test(char, match)
   if char == nil then return false -- vim.fn.match returns false for nil char, but not if pattern contains `[:lower:]`
@@ -42,7 +43,7 @@ local function test_split_identifiers(chars, cur_i)
   elseif test(cur_char, matches.digit) then
     is_match = not test(chars[cur_i - 1], matches.digit)
   elseif test(cur_char, matches.lower) then
-    is_match = not test(chars[cur_i - 1], matches.lower)
+    is_match = not test(chars[cur_i - 1], matches.word) or test(chars[cur_i - 1], matches.digit)
   else
     local prev_char = chars[cur_i - 1]
     is_match = prev_char ~= cur_char -- matching only first character in ==, [[ and ]]
@@ -53,7 +54,7 @@ end
 local function test_regular(chars, cur_i)
   local cur_char = chars[cur_i]
   local prev_char = chars[cur_i - 1]
-  if test(cur_char, matches.word) then return prev_char ~= "-" and prev_char ~= "_" and not test(prev_char, matches.word)
+  if test(cur_char, matches.keyw) then return not test(prev_char, matches.keyw)
   else return prev_char ~= cur_char end
 end
 
@@ -156,6 +157,7 @@ local function leap(opts, leap_override_opts)
   local targets = get_targets(winid, char, direction, test_func)
   if targets ~= nil then
     print("Match found")
+
     require("leap").leap(vim.tbl_extend("force", {
       target_windows = { winid },
       targets = targets,
