@@ -84,18 +84,19 @@ local function get_targets(winid, char, direction)
       lnum = lnum + 1
     end
   end
+  if #targets == 0 then return end
   -- Sort them by vertical screen distance from cursor.
   local cur_screen_row = vim.fn.screenpos(winid, cursor_line, 1)["row"]
-  local function screen_rows_from_cur(t)
-    local t_screen_row = vim.fn.screenpos(winid, t.pos[1], t.pos[2])["row"]
-    return math.abs(cur_screen_row - t_screen_row)
+  for _, t in ipairs(targets) do
+    local pos = vim.fn.screenpos(winid, t.pos[1], t.pos[2])
+    if pos.row > 0 and pos.col > 0 then
+      t.screen_line_diff = math.abs(cur_screen_row - pos.row)
+    else
+      t.screen_line_diff = math.huge
+    end
   end
-  table.sort(targets, function(t1, t2)
-    return screen_rows_from_cur(t1) < screen_rows_from_cur(t2)
-  end)
-  if #targets >= 1 then
-    return targets
-  end
+  table.sort(targets, function(t1, t2) return t1.screen_line_diff < t2.screen_line_diff end)
+  return targets
 end
 
 local function leap(opts, leap_override_opts)
