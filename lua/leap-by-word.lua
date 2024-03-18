@@ -17,14 +17,13 @@ end
 
 -- patterns and functions for testing if a character should be considered a target
 local matches = {
-  upper = [=[\v[[:upper:]]\C]=],
-  lower = [=[\v[[:lower:]]\C]=],
-  digit = [=[\v[[:digit:]]\C]=],
-  word  = [=[\v[[:upper:][:lower:][:digit:]]\C]=],
+  upper = vim.regex("^[[:upper:]]$"),
+  lower = vim.regex("^[[:lower:]]$"),
+  digit = vim.regex("^[[:digit:]]$"),
 }
 local function test(char, match)
   if char == nil then return false -- vim.fn.match returns false for nil char, but not if pattern contains `[:lower:]`
-  else return vim.fn.match(char, match) == 0 end
+  else return match:match_str(char) ~= nil end
 end
 
 local function test_split_identifiers(chars, cur_i)
@@ -32,17 +31,18 @@ local function test_split_identifiers(chars, cur_i)
 
   local is_match = false
 
-  if test(cur_char, matches.upper) then
+  if test(cur_char, matches.lower) then
+    local prev_char = chars[cur_i - 1]
+    is_match = not test(prev_char, matches.lower) and not test(prev_char, matches.upper)
+  elseif test(cur_char, matches.upper) then
     local prev_char = chars[cur_i - 1]
     if not test(prev_char, matches.upper) then is_match = true
     else
       local next_char = chars[cur_i + 1]
-      is_match = test(next_char, matches.word) and not test(next_char, matches.upper)
+      is_match = test(next_char, matches.lower)
     end
   elseif test(cur_char, matches.digit) then
     is_match = not test(chars[cur_i - 1], matches.digit)
-  elseif test(cur_char, matches.lower) then
-    is_match = not test(chars[cur_i - 1], matches.word) or test(chars[cur_i - 1], matches.digit)
   else
     local prev_char = chars[cur_i - 1]
     is_match = prev_char ~= cur_char -- matching only first character in ==, [[ and ]]
@@ -53,7 +53,7 @@ end
 
 local function get_targets(winid, char, direction)
   -- Case sensitive version: "\\v[[="..char.."=]]\\C"
-  local match_regex = "\\v[[="..char.."=]]\\c"
+  local match_regex = vim.regex("^[[="..char.."=]]\\c$")
 
   local wininfo = vim.fn.getwininfo(winid)[1]
   local lnum = wininfo.topline
